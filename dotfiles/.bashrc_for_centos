@@ -1,0 +1,24 @@
+# .bashrc
+
+# User specific aliases and functions
+export FIGNORE=CVS
+#cvsroot
+#export CVSROOT=
+export CVSEDITOR=vim
+alias vi='vim'
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
+# Support more colors
+export TERM=xterm-256color
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+	. /etc/bashrc
+fi
+
+parent_command=$(ps -o comm= -p $PPID)
+parent_command=${parent_command##*/}
+if [ "$(ps -o tty= -p $$)" = "$(ps -o tty= -p $PPID)" ]; then
+    # Not running directly under a terminal emulator
+    PS1="{$parent_command}$PS1"
+fi
