@@ -1,3 +1,4 @@
+" When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
 endif
@@ -115,13 +116,18 @@ endif
   map <F5> :execute "! /etc/init.d/epages6 restart_perl"
   map <F4> :execute "! /etc/init.d/epages6 restart_perl && rm -rf /srv/epages/eproot/Shared/Static/*"
 
+  set background=dark   " musta tausta
   set encoding=utf-8
   set fileencoding=utf-8
-  " badwolf needs to be set up before using these.
+  
   "let g:badwolf_darkgutter = 1
-  "colorscheme badwolf
-  set background=dark   " musta tausta
+  colorscheme railscasts
   set listchars=eol:$,tab:>-,trail:~,extends:>,precedes:<,nbsp:.
 "  hi Normal   guibg=NONE ctermbg=NONE
 "  hi NonText  guibg=NONE ctermbg=NONE
 "  hi Tag      guibg=NONE ctermbg=NONE
+
+" Open original file if current one is override
+if !exists(":DiffOverride")
+  command DiffOverride vnew `=substitute(expand("%:p"),"FI_.\\+\\\(DE_EPAGES.\\+\\\)","\\1","")`
+endif
