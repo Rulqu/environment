@@ -129,5 +129,5 @@ endif
 
 " Open original file if current one is override
 if !exists(":DiffOverride")
-  command DiffOverride vnew `=substitute(expand("%:p"),"FI_.\\+\\\(DE_EPAGES.\\+\\\)","\\1","")`
+  command DiffOverride vnew `=substitute(expand("%:p"),"FI_.\\+\\\(DE_EPAGES.\\+\\\)","\\1","")` | windo diffthis
 endif
