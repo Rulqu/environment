@@ -1,3 +1,4 @@
+" set runtimepath=/path/to/.vim,$VIMRUNTIME
 " When started as "evim", evim.vim will already have done these settings.
 if v:progname =~? "evim"
   finish
